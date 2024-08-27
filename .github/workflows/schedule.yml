@@ -1,0 +1,25 @@
+name: check homepage
+
+on:
+  schedule:
+    - cron: '0 10,17 * * 1-5' # mon - fri @ 10 am & 5 pm (bank hours)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: setup python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.12'
+        - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r environments.txt
+
+    - name: check homepage
+      run: |
+        python webscrape.py
