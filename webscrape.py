@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import datetime
+import os
+import numpy as np
 
 url = "https://www.swedbank.se/privat/boende-och-bolan/bolanerantor.html"
 
@@ -16,8 +18,9 @@ interests = soup.find_all('td', attrs={'class':'JustifyLeft'})
 
 # extract interest rates
 # use indexes, 29:49
+# use indexes, 3:25 : 28 aug 2024, order of tables changed on homepage
 values = []
-for i in range(29, 49 + 1, 2): # +1 so 49 is included
+for i in range(3, 25, 2):
   val = interests[i].text
 
   # remove white space & extra characters
@@ -37,12 +40,8 @@ dat = pd.DataFrame([date + values])
 colnames = ['date', '3m', '1y', '2y', '3y', '4y', '5y', '6y', '7y', '8y', '9y', '10y']
 dat.columns = colnames
 
-
-import os
-import numpy as np
-
 def save_table(filename, dat):
-  
+    
   if not os.path.isfile(filename):
       
     # First time file is generated, include the header
