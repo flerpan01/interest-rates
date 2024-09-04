@@ -32,7 +32,7 @@ jobs:
         COND=$(git diff --name-only)
         
         # check if file has been changed
-        if [[ $COND == 'swedbank.csv' ]]; then;
+        if [[ $COND == 'swedbank.csv' ]]; then
 
           git add swedbank.csv
           git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
