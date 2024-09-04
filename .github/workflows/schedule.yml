@@ -8,7 +8,7 @@ on:
 jobs:
   check-hompage:
     permissions:
-      content: write
+      contents: write
     
     runs-on: ubuntu-latest
 
