@@ -29,6 +29,13 @@ jobs:
     - uses: actions4git/setup-git@v1
     - name: commit & push
       run: |
-        git add swedbank.csv
-        git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
-        git push
+        COND=$(git diff --name-only)
+        
+        # check if file has been changed
+        if [[ $COND == 'swedbank.csv' ]]; then;
+
+          git add swedbank.csv
+          git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
+
+        fi
