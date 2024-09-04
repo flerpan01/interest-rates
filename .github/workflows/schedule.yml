@@ -1,11 +1,15 @@
-name: check homepage
+name: webscrape
 
 on:
   schedule:
-    - cron: '0 10,17 * * 1-5' # mon - fri @ 10 am & 5 pm (bank hours)
+    - cron: '0 17 * * 1-5' # mon - fri @ 5 pm
+  workflow_dispatch
 
 jobs:
-  build:
+  check-hompage:
+    permissions:
+      content: write
+    
     runs-on: ubuntu-latest
 
     steps:
@@ -19,3 +23,12 @@ jobs:
     - name: check homepage
       run: |
         python webscrape.py
+
+    # if, add if statement to only commit if swedbank.csv changed
+
+    - uses: actions4git/setup-git@v1
+    - name: commit & push
+      run: |
+        git add swedbank.csv
+        git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
+        git push
