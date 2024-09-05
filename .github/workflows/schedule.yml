@@ -29,9 +29,9 @@ jobs:
         echo "COND=$(git diff --name-only)" >> $GITHUB_ENV
         echo $COND
 
+    - uses: actions4git/setup-git@v1
     - name: commit & push
       if: env.COND == 'swedbank.csv'
-      uses: actions4git/setup-git@v1
       run: |
         git add swedbank.csv
         git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
