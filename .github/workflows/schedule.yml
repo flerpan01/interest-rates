@@ -24,18 +24,15 @@ jobs:
       run: |
         python webscrape.py
 
-    # if, add if statement to only commit if swedbank.csv changed
-
-    - uses: actions4git/setup-git@v1
-    - name: commit & push
+    - name: check git diff
       run: |
-        COND=$(git diff --name-only)
-        
-        # check if file has been changed
-        if [[ $COND == 'swedbank.csv' ]]; then
+        echo "COND=$(git diff --name-only)" >> $GITHUB_ENV
+        echo $COND
 
-          git add swedbank.csv
-          git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
-          git push
-
-        fi
+    - name: commit & push
+      if: env.COND == 'swedbank.csv'
+      uses: actions4git/setup-git@v1
+      run: |
+        git add swedbank.csv
+        git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
+        git push
