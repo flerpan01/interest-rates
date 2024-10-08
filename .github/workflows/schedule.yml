@@ -2,7 +2,7 @@ name: webscrape
 
 on:
   schedule:
-    - cron: '0 17 * * 1-5' # mon - fri @ 5 pm
+    - cron: '0 15 * * 1-5' # mon - fri @ 5 pm STHLM
   workflow_dispatch:
 
 jobs:
@@ -27,12 +27,18 @@ jobs:
     - name: check git diff
       run: |
         echo "COND=$(git diff --name-only)" >> $GITHUB_ENV
-        echo $COND
+        echo $GITHUB_ENV
+        echo $env.COND
+        echo $GITHUB_ENV.COND
 
     - uses: actions4git/setup-git@v1
     - name: commit & push
       if: env.COND == 'swedbank.csv'
       run: |
         git add swedbank.csv
-        git commit -m "workflow commit @ $(date +'%Y-%m-%d %H:%M:%S')"
+        git commit -m "github-actions @ $(date +'%Y-%m-%d %H:%M:%S')"
         git push
+
+    - name: no update
+      if: env.COND == ''
+      run: echo "no updated of file needed"
