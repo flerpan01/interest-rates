@@ -13,6 +13,8 @@ url = "https://www.swedbank.se/privat/boende-och-bolan/bolanerantor.html"
 page = requests.get(url)
 soup = BeautifulSoup(page.text, 'html.parser')
 
+print(f"\nstatus code: {page.status_code}\n")
+
 # locate the 'td' element
 interests = soup.find_all('td', attrs={'class':'JustifyLeft'})
 
