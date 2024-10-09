@@ -10,7 +10,7 @@ import numpy as np
 url = "https://www.swedbank.se/privat/boende-och-bolan/bolanerantor.html"
 
 # Extract the html page
-page = requests.get(url)
+page = requests.get(url, timeout=20, verify=False)
 soup = BeautifulSoup(page.text, 'html.parser')
 
 print(f"\nstatus code: {page.status_code}\n")
