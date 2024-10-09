@@ -2,7 +2,7 @@ name: webscrape
 
 on:
   schedule:
-    - cron: '0 15 * * 1-5' # mon - fri @ 5 pm STHLM
+    - cron: '0 8,13 * * 1-5' # mon - fri @ 8:00 & 13:00 pm STHLM
   workflow_dispatch:
 
 jobs:
