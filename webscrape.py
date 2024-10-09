@@ -9,11 +9,16 @@ import numpy as np
 
 url = "https://www.swedbank.se/privat/boende-och-bolan/bolanerantor.html"
 
+print(f"\n ~~~ scraping URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+print(f" {url}\n")
+
 # Extract the html page
-page = requests.get(url, timeout=20, verify=False)
+page = requests.get(url, timeout=20)
 soup = BeautifulSoup(page.text, 'html.parser')
 
-print(f"\nstatus code: {page.status_code}\n")
+print(f"\n Status code: {page.status_code}\n")
+
+print(f" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
 # locate the 'td' element
 interests = soup.find_all('td', attrs={'class':'JustifyLeft'})
