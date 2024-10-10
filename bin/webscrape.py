@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from bs4 import BeautifulSoup
-import requests
+import urllib3
 import pandas as pd
 import datetime
 import os
@@ -13,11 +13,10 @@ print(f"\n ~~~ scraping URL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 print(f" {url}\n")
 
 # Extract the html page
-page = requests.get(url, timeout=20)
-soup = BeautifulSoup(page.text, 'html.parser')
+page = urllib3.request("GET", url)
+soup = BeautifulSoup(page.data, 'html.parser')
 
-print(f"\n Status code: {page.status_code}\n")
-
+print(f"\n Status code: {page.status}\n")
 print(f" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
 # locate the 'td' element
