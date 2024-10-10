@@ -7,10 +7,10 @@ project/
 |-- .github
 |   `-- workflows
 |       `-- schedule.yml
-|-- README.md
-|-- requirements.txt
+|-- bin/webscrape.py
+|-- env/requirements.txt
 |-- swedbank.csv
-`-- webscrape.py
+`-- README.md
 ```
 
 ---
