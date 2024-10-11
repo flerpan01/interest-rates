@@ -44,7 +44,7 @@ name: check homepage
 
 on:
   schedule:
-    - cron: '0 15 * * 1-5' # mon - fri @ 5 pm (stockholm)
+    - cron: '0 13 * * 1-5' # mon - fri @ 13:00 PM (stockholm)
 
 jobs:
   build:
