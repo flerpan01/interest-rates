@@ -20,15 +20,11 @@ print(f"\n Status code: {page.status}\n")
 print(f" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
 # locate the 'td' element
-interests = soup.find_all('td', attrs={'class':'JustifyLeft'})
+interests = soup.find_all('td')
 
 # extract interest rates
-# use indexes, 29:49
-# use indexes, 3:25 : 28 aug 2024, order of tables changed on homepage
-# 9 jan 2025, homepage updated again, use everyother index 29:49
 values = []
-#for i in range(3, 25, 2):
-for i in range(29, 49+1, 2):
+for i in range(25, 47, 2): 
   val = interests[i].text
 
   # remove white space & extra characters
